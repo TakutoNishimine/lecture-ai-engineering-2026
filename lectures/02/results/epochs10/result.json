@@ -1,0 +1,110 @@
+{
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 10,
+    "warmup_steps": 6,
+    "lr": 0.0002,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "max_seq_len": 512,
+    "max_new_tokens": 96,
+    "gen": {
+      "do_sample": false
+    }
+  },
+  "versions": {
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "torch": "2.11.0+cu130"
+  },
+  "method": "LoRA（量子化なし）",
+  "before": {
+    "label": "before",
+    "n": 21,
+    "format_rate": 0.09523809523809523,
+    "content_rate": 0,
+    "both_rate": 0,
+    "seconds": 40.4
+  },
+  "after": {
+    "label": "after",
+    "n": 21,
+    "format_rate": 1,
+    "content_rate": 0.8571428571428571,
+    "both_rate": 0.8571428571428571,
+    "seconds": 46
+  },
+  "regressed": [],
+  "knowledge": [
+    {
+      "質問": "この講座の最終課題の締切はいつですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"9 月 30 日 23:59\"}",
+      "学習後の分類": "asserted",
+      "学習後の出力": "{\"answer\": \"課題の提出期限は 9 月 30 日 23:59（日本時間）です。\", \"needs_review\": false}"
+    },
+    {
+      "質問": "担当教員の名前は何ですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"確認が必要\"}",
+      "学習後の分類": "needs_review",
+      "学習後の出力": "{\"answer\": \"この FAQ には記載がありません。必ずに確認が必要です。\", \"needs_review\": true}"
+    },
+    {
+      "質問": "次回の講義のテーマは何ですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"次回の講義のテーマは「学習ポータル」の「課題」欄で提出する PDF 1 ファイルを提出します。\"}",
+      "学習後の分類": "needs_review",
+      "学習後の出力": "{\"answer\": \"この FAQ には記載がありません。必ずに確認が必要です。\", \"needs_review\": true}"
+    },
+    {
+      "質問": "課題の提出期限はいつですか",
+      "FAQ にある": false,
+      "学習前の分類": "format_error",
+      "学習前の出力": "{\"answer\": \"9 月 30 日 23:59\"}",
+      "学習後の分類": "asserted",
+      "学習後の出力": "{\"answer\": \"課題の提出期限は 9 月 30 日 23:59（日本時間）です。\", \"needs_review\": false}"
+    }
+  ],
+  "executed_training_myself": true,
+  "training_log": [
+    {
+      "loss": 1.5605104446411133,
+      "grad_norm": 2.1118009090423584,
+      "learning_rate": 0.000178183148246803,
+      "entropy": 1.833416572213173,
+      "num_tokens": 17860,
+      "mean_token_accuracy": 0.6874520689249038,
+      "epoch": 5,
+      "step": 10
+    },
+    {
+      "loss": 0.0988554298877716,
+      "grad_norm": 0.38966575264930725,
+      "learning_rate": 0.0000025072087818176382,
+      "entropy": 0.20494410283863546,
+      "num_tokens": 35720,
+      "mean_token_accuracy": 0.9828313589096069,
+      "epoch": 10,
+      "step": 20
+    },
+    {
+      "train_runtime": 129.2452,
+      "train_samples_per_second": 1.083,
+      "train_steps_per_second": 0.155,
+      "total_flos": 110607260520960,
+      "train_loss": 0.8296829372644424,
+      "epoch": 10,
+      "step": 20
+    }
+  ],
+  "training_seconds": 129.2452,
+  "final_logged_loss": 0.0988554298877716,
+  "execution_note": "Executed in the student Colab account with Codex assistance; no instructor results used."
+}
